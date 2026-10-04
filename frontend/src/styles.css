@@ -35,3 +35,10 @@ button.ghost { background: transparent; color: var(--ink); border: 1px solid var
 input, textarea { width: 100%; padding: 10px; border-radius: 12px; border: 1px solid var(--line); font: inherit; margin: 6px 0 12px; background: #fff; }
 .menu-btn { position: fixed; left: 16px; top: 16px; z-index: 10; }
 .err { color: #a33; }
+.dispute { color: #a33; font-weight: 600; }
+.panel {
+  background: #fff; border: 1px dashed var(--line); border-radius: 14px;
+  padding: 12px 14px; margin: 12px 0;
+}
+.dispute-panel { border-color: var(--rose); }
+select { padding: 8px; border-radius: 12px; border: 1px solid var(--line); font: inherit; background: #fff; }

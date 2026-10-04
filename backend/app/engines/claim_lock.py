@@ -9,11 +9,14 @@ def parse_ts(s: str) -> datetime:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt
 
-def claim_allowed(status: str, claimer: str | None, now: datetime, expires_at: str | None) -> dict:
-    """Only open wishes (or expired locks) can be claimed."""
+def claim_allowed(status: str, claimer: str | None, now: datetime, expires_at: str | None,
+                  disputed: bool = False) -> dict:
+    """Only open wishes (or expired locks) can be claimed. Disputed wishes lock out everyone."""
     if status == "fulfilled":
         return {"ok": False, "reason": "already_fulfilled"}
     if status == "claimed" and claimer:
+        if disputed:
+            return {"ok": False, "reason": "disputed"}
         if expires_at and parse_ts(expires_at) <= now:
             return {"ok": True, "reason": "ttl_expired_reclaim"}
         return {"ok": False, "reason": "locked"}

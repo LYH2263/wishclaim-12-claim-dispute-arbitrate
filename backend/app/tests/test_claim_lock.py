@@ -16,3 +16,10 @@ def test_lock_payload_sets_expiry():
     assert p["status"] == "claimed" and p["claimer"] == "bob"
     assert release_if_expired("claimed", p["expires_at"], NOW) is None
     assert release_if_expired("claimed", (NOW - timedelta(seconds=1)).isoformat(), NOW)["status"] == "open"
+
+def test_disputed_blocks_everyone_even_ttl_expired():
+    expired = (NOW - timedelta(minutes=1)).isoformat()
+    r = claim_allowed("claimed", "alice", NOW, expired, disputed=True)
+    assert r["ok"] is False and r["reason"] == "disputed"
+    r2 = claim_allowed("claimed", "alice", NOW, expired, disputed=False)
+    assert r2["ok"] is True  # 无争议时过期锁仍可被认领
