@@ -1,6 +1,6 @@
 :root {
   --bg: #f6ebe3; --rose: #e8a0a0; --ink: #3a2a28; --card: #fff8f3;
-  --muted: #8a6f68; --line: #e4d0c6;
+  --muted: #8a6f68; --line: #e4d0c6; --warn: #c07a3b; --ok: #6a8f5b;
   font-family: "Source Sans 3", Georgia, sans-serif; color: var(--ink);
   background: var(--bg);
 }
@@ -35,3 +35,29 @@ button.ghost { background: transparent; color: var(--ink); border: 1px solid var
 input, textarea { width: 100%; padding: 10px; border-radius: 12px; border: 1px solid var(--line); font: inherit; margin: 6px 0 12px; background: #fff; }
 .menu-btn { position: fixed; left: 16px; top: 16px; z-index: 10; }
 .err { color: #a33; }
+.countdown { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; }
+.countdown.warn { color: var(--warn); font-weight: 600; }
+.badge {
+  display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--muted); background: transparent;
+}
+.badge.b-claimed { color: var(--ink); border-color: var(--ink); }
+.badge.b-fulfilled { color: var(--ok); border-color: var(--ok); }
+.badge.b-disputed { color: #fff; background: var(--warn); border-color: var(--warn); }
+.chip {
+  display: inline-block; font-size: 12px; padding: 1px 8px; margin: 2px 6px 2px 0;
+  border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+}
+.chip-won { color: var(--ok); border-color: var(--ok); }
+.chip-lost, .chip-open { color: var(--warn); border-color: var(--warn); }
+.banner {
+  border: 1px solid var(--warn); background: rgba(192,122,59,.1);
+  border-radius: 12px; padding: 10px 12px; margin: 8px 0;
+}
+.banner.closed { border-color: var(--line); background: rgba(138,111,104,.1); }
+.outcome {
+  border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+  margin: 6px 0; cursor: pointer; background: #fff;
+}
+.outcome.selected { border-color: var(--rose); box-shadow: 0 0 0 2px rgba(232,160,160,.35); }
+button:disabled { opacity: .55; cursor: not-allowed; }
